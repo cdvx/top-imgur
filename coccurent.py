@@ -1,11 +1,11 @@
 import logging
 import os
 from functools import partial
-from multiprocessing.pool import Pool
+from multiprocessing import Pool
 from time import time
 
 from download import setup_download_dir, get_links, download_link
-
+from config import Config
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger('requests').setLevel(logging.CRITICAL)
@@ -21,7 +21,7 @@ def main():
     download_dir = setup_download_dir()
     links = get_links(client_id)
     download = partial(download_link, download_dir)
-    
+
     with Pool(4) as p:
         p.map(download, links)
     logging.info(f'Prcoess Took: {time() - ts} seconds')
