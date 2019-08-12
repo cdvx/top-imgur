@@ -24,7 +24,6 @@ def get_links(client_id):
 def download_link(directory, link):
     # download and save images
     download_path = directory / os.path.basename(link)
-    print(f'\n download_path: {download_path} = directory: {directory} / os.path.basename(link): {os.path.basename(link)}')
     with urlopen(link) as image, download_path.open('wb') as f:
         f.write(image.read())
     logger.info(f'Downloaded {link}')
