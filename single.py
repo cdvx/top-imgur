@@ -12,7 +12,7 @@ def main():
     ts = time()
     client_id = Config.CLIENT_ID
     if not client_id:
-        raise Exception("Please add IMGUR CLIENT_ID environment variable!")
+        raise Exception("Please add IMGUR `CLIENT_ID` environment variable!")
     download_dir = setup_download_dir()
     links = get_links(client_id)
     for link in links:
